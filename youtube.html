@@ -81,6 +81,7 @@
 
   function onReady(){
     ready = true;
+    postToApp({ event: "onReady", info: 1 });
     var q = queued; queued = [];
     for (var i = 0; i < q.length; i++) runCommand(q[i][0], q[i][1]);
     try { player.playVideo(); } catch (e) {}
