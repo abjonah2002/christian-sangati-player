@@ -20,7 +20,9 @@
   rejects embeds without one — Error 153 "Video player configuration error".
   This page is served over real https, so the Referer it sends to YouTube is
   a valid https URL and the player is accepted. The app loads this page in
-  its hidden audio iframe (iOS only) instead of youtube.com directly.
+  its VISIBLE player iframe (iOS only) instead of youtube.com directly.
+  The YouTube player is shown with its own controls, as the app requires —
+  it is never hidden to make an audio-only YouTube experience.
   It is a transparent relay: the app posts the same {event:"command", func,
   args} messages it already sends to a YouTube iframe, and this page calls
   the matching YT.Player method; player state/time come back to the app in
@@ -110,9 +112,9 @@
       playerVars: {
         autoplay: 1,
         start: start,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
+        controls: 1,
+        disablekb: 0,
+        fs: 1,
         rel: 0,
         playsinline: 1,
         origin: window.location.origin
